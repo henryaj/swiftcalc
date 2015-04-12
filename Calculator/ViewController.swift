@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     // in Swift, all class instances live in the heap, and memory allocation is done
     // automatically for you.
     @IBOutlet weak var display: UILabel!
+    
+    var userIsInTheMiddleOfTypingANumber: Bool = false
 
     
     // okay, this is a method (a 'func'tion). Its type is UIButton. 
@@ -26,7 +28,13 @@ class ViewController: UIViewController {
         // the bang at the end of currentTitle 'unwraps' the optional and gets its value if set.
         // BUT if a value isn't set - the app will crash.
         let digit = sender.currentTitle!
-        display.text = display.text! + digit
+
+        if userIsInTheMiddleOfTypingANumber {
+            display.text = display.text! + digit
+        } else {
+            display.text = digit
+            userIsInTheMiddleOfTypingANumber = true
+        }
     }
 }
 
